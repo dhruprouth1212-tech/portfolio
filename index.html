@@ -14,108 +14,157 @@
         #fluid-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; display: block; }
         
         header, section { position: relative; z-index: 10; }
-        section { padding: 120px 10% 60px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        section { padding: 100px 5% 60px 5%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 
         /* === HEADER / NAV === */
-        header { padding: 25px 10%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 100; background: rgba(5, 19, 32, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .nav-menu { display: flex; gap: 30px; font-size: 14px; letter-spacing: 1px; margin-left: auto; }
-        .nav-menu a { position: relative; padding-bottom: 5px; transition: 0.3s; cursor: pointer; display: inline-block; z-index: 110; }
+        header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 100; background: rgba(5, 19, 32, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
+        
+        /* Mobile-Friendly Menu Layout */
+        .nav-menu { display: flex; gap: 25px; font-size: 13px; letter-spacing: 1px; margin-left: auto; }
+        .nav-menu a { position: relative; padding-bottom: 5px; transition: 0.3s; cursor: pointer; display: inline-block; z-index: 110; text-transform: uppercase; }
         .nav-menu a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #d9253c; transition: width 0.3s ease; }
         .nav-menu a:hover::after { width: 100%; }
         .nav-menu a:hover { color: #d9253c; }
 
         /* === HERO SECTION === */
-        .hero { display: flex; align-items: center; justify-content: center; }
-        .red-accent { position: absolute; left: 5%; top: 30%; width: 300px; height: 300px; background-color: #7a1523; border-radius: 150px 0 0 150px; z-index: 1; }
-        .hero-image { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; object-position: center top; position: absolute; left: 12%; top: 25%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 2; opacity: 0.85; }
-        .hero-content { position: relative; z-index: 10; margin-left: 28%; text-align: left; }
+        .hero { display: flex; align-items: center; justify-content: center; max-width: 1200px; margin: 0 auto; padding-top: 120px; }
+        .hero-container { display: flex; width: 100%; align-items: center; gap: 40px; position: relative; }
+        
+        .hero-image-wrapper { position: relative; flex: 1; display: flex; justify-content: center; align-items: center; }
+        .red-accent { position: absolute; width: 100%; max-width: 320px; height: 320px; background-color: #7a1523; border-radius: 50% 0 50% 50%; z-index: 1; filter: blur(10px); opacity: 0.6; }
+        .hero-image { width: 100%; max-width: 320px; height: 320px; border-radius: 50%; object-fit: cover; object-position: center top; position: relative; z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0.9; }
+        
+        .hero-content { flex: 1.5; position: relative; z-index: 10; text-align: left; }
 
         @keyframes portfolioGlow {
             0% { text-shadow: 4px 4px 15px rgba(0,0,0,0.8); transform: translateY(0px); }
-            50% { text-shadow: 0 0 25px rgba(217, 37, 60, 0.8), 0 0 40px rgba(122, 21, 35, 0.5); transform: translateY(-8px); color: #ffe6e6; }
+            50% { text-shadow: 0 0 25px rgba(217, 37, 60, 0.8), 0 0 40px rgba(122, 21, 35, 0.5); transform: translateY(-5px); color: #ffe6e6; }
             100% { text-shadow: 4px 4px 15px rgba(0,0,0,0.8); transform: translateY(0px); }
         }
-        .hero-content h1 { font-size: 90px; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 10px; animation: portfolioGlow 3.5s infinite ease-in-out; }
-        .hero-content p { font-size: 18px; letter-spacing: 3px; color: #8da1b5; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); margin-bottom: 20px; }
+        /* Scalable Typography using clamp() */
+        .hero-content h1 { font-size: clamp(40px, 6vw, 85px); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; animation: portfolioGlow 3.5s infinite ease-in-out; line-height: 1.1; }
+        .hero-content p { font-size: clamp(13px, 1.5vw, 17px); letter-spacing: 2px; color: #8da1b5; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); line-height: 1.4; }
 
         /* === ABOUT SECTION === */
+        .about-section-container { max-width: 1200px; margin: 0 auto; width: 100%; }
         .about-container { display: flex; gap: 50px; align-items: flex-start; }
-        .about-left { flex: 1; text-align: center; }
-        .about-left img { width: 100%; max-width: 350px; border-radius: 20px; object-fit: cover; object-position: center top; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .about-left h2 { margin-top: 20px; color: #8da1b5; font-size: 16px; letter-spacing: 2px; }
-        .about-left h3 { font-size: 32px; margin-bottom: 20px; }
+        .about-left { flex: 1; text-align: center; position: sticky; top: 120px; }
+        .about-left img { width: 100%; max-width: 320px; border-radius: 20px; object-fit: cover; object-position: center top; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .about-left h2 { margin-top: 20px; color: #8da1b5; font-size: 14px; letter-spacing: 2px; }
+        .about-left h3 { font-size: 28px; margin-bottom: 20px; letter-spacing: 1px; }
         
-        .personal-info-box { background: rgba(255,255,255,0.05); border: 1px solid #1a3652; border-radius: 15px; padding: 20px; text-align: left; max-width: 350px; margin: 0 auto; }
-        .personal-info-box p { font-size: 14px; color: #b0c4de; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px;}
+        .personal-info-box { background: rgba(255,255,255,0.04); border: 1px solid #1a3652; border-radius: 15px; padding: 20px; text-align: left; max-width: 320px; margin: 0 auto; backdrop-filter: blur(5px); }
+        .personal-info-box p { font-size: 13px; color: #b0c4de; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;}
         .personal-info-box p:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .personal-info-box strong { color: #ffffff; width: 100px; display: inline-block;}
+        .personal-info-box strong { color: #ffffff; width: 90px; display: inline-block;}
 
         .about-right { flex: 1.5; }
-        .about-right h2 { font-size: 24px; margin-top: 20px; margin-bottom: 15px; color: #a3b8cc; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid #d9253c; padding-left: 10px; }
-        .about-right p { line-height: 1.6; margin-bottom: 30px; color: #b0c4de; text-align: justify; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .skill-tag { background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; display: inline-block; margin: 5px 5px 5px 0; font-weight: bold; font-size: 13px; transition: 0.3s; }
+        .about-right h2 { font-size: 20px; margin-top: 25px; margin-bottom: 15px; color: #a3b8cc; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid #d9253c; padding-left: 10px; }
+        .about-right p { line-height: 1.6; margin-bottom: 25px; color: #b0c4de; text-align: justify; font-size: 15px; }
+        
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px; }
+        .skill-tag { background: rgba(255,255,255,0.08); padding: 8px 14px; border-radius: 5px; display: inline-block; margin: 4px 4px 4px 0; font-weight: bold; font-size: 12px; transition: 0.3s; border: 1px solid transparent; }
         .skill-tag:hover { background: rgba(217, 37, 60, 0.2); border-color: #d9253c; }
-        .skill-tag.highlight { border: 1px solid #d9253c; color: #ffebec; background: rgba(217, 37, 60, 0.1); }
+        .skill-tag.highlight { border: 1px solid #d9253c; color: #ffebec; background: rgba(217, 37, 60, 0.15); }
 
         .learning-card { background: rgba(255,255,255,0.02); border: 1px dashed #334455; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .learning-card ul { margin-left: 20px; color: #b0c4de; font-size: 14px; line-height: 1.5; }
+        .learning-card ul { margin-left: 18px; color: #b0c4de; font-size: 13px; line-height: 1.5; }
         .learning-card ul li { margin-bottom: 5px; }
 
-        /* === PROJECTS SECTION & LIVE BUTTONS === */
-        .projects-header { text-align: center; margin-bottom: 40px; }
-        .projects-header h2 { font-size: 36px; letter-spacing: 2px; }
+        /* === PROJECTS SECTION === */
+        .projects-section-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+        .projects-header { text-align: center; margin-bottom: 35px; }
+        .projects-header h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 2px; }
         
-        /* Updated dynamic buttons alignment */
-        .visit-studio-wrapper { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; position: relative; z-index: 30; }
-        .visit-studio-btn { display: inline-block; background: linear-gradient(45deg, #0a5096, #112233); border: 2px solid #d9253c; padding: 15px 35px; font-size: 16px; font-weight: bold; border-radius: 30px; color: #ffffff; transition: 0.3s; box-shadow: 0 5px 15px rgba(217,37,60,0.2); cursor: pointer; position: relative; z-index: 40; }
-        .visit-studio-btn:hover { background: #d9253c; transform: scale(1.05); box-shadow: 0 8px 25px rgba(217,37,60,0.5); color: #ffffff; }
+        .visit-studio-wrapper { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; position: relative; z-index: 30; }
+        .visit-studio-btn { display: inline-block; background: linear-gradient(45deg, #0a5096, #112233); border: 2px solid #d9253c; padding: 12px 28px; font-size: 14px; font-weight: bold; border-radius: 30px; color: #ffffff; transition: 0.3s; box-shadow: 0 5px 15px rgba(217,37,60,0.2); cursor: pointer; text-align: center; }
+        .visit-studio-btn:hover { background: #d9253c; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(217,37,60,0.5); color: #ffffff; }
         
-        .gallery { column-count: 3; column-gap: 20px; width: 100%; margin-top: 20px; }
-        @media (max-width: 900px) { .gallery { column-count: 2; } .visit-studio-wrapper { flex-direction: column; align-items: center; gap: 15px; } } 
-        @media (max-width: 600px) { .gallery { column-count: 1; } } 
-        .gallery-item { background-color: #112233; border-radius: 10px; overflow: hidden; border: 1px solid #1a3652; z-index: 10; display: inline-block; width: 100%; margin-bottom: 20px; }
-        .gallery-item:hover { border-color: #d9253c; transition: 0.3s; }
-        .no-download-img { width: 100%; height: auto; display: block; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+        /* Modern CSS Grid instead of Column-Count to prevent item cutting on responsive breakpoints */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
+        .gallery-item { background-color: #112233; border-radius: 10px; overflow: hidden; border: 1px solid #1a3652; z-index: 10; width: 100%; transition: 0.3s; height: 100%; min-height: 200px; }
+        .gallery-item:hover { border-color: #d9253c; transform: translateY(-3px); }
+        .no-download-img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; user-select: none; -webkit-user-drag: none; }
 
         /* === REVIEWS SECTION === */
-        .reviews-header { text-align: center; margin-bottom: 50px; }
-        .stat-badge-large { display: inline-block; background: linear-gradient(45deg, #7a1523, #d9253c); padding: 15px 40px; border-radius: 40px; font-size: 22px; font-weight: bold; letter-spacing: 2px; box-shadow: 0 5px 20px rgba(122, 21, 35, 0.6); margin-bottom: 40px; }
-        .reviews-header h2 { font-size: 36px; letter-spacing: 2px; }
-        @keyframes buttonPulse { 0% { box-shadow: 0 0 0 0 rgba(217, 37, 60, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(217, 37, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(217, 37, 60, 0); } }
-        .add-review-btn { background: #ffffff; color: #051320; border: none; padding: 12px 30px; font-size: 16px; font-weight: bold; border-radius: 30px; cursor: pointer; margin-top: 20px; transition: 0.3s; animation: buttonPulse 2s infinite; position: relative; z-index: 40; }
-        .add-review-btn:hover { background: #d9253c; color: #ffffff; transform: translateY(-3px); animation: none; box-shadow: 0 6px 20px rgba(217, 37, 60, 0.5); }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
-        .review-card { background: rgba(17, 34, 51, 0.6); border: 1px solid #1a3652; border-radius: 15px; padding: 25px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .review-card:hover { border-color: #d9253c; transform: translateY(-5px); background: rgba(17, 34, 51, 0.9); }
-        .review-stars { color: #ffd700; font-size: 18px; margin-bottom: 10px; }
-        .review-text { font-size: 15px; color: #b0c4de; line-height: 1.5; margin-bottom: 15px; font-style: italic; }
-        .review-author { font-weight: bold; font-size: 16px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; }
+        .reviews-section-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+        .reviews-header { text-align: center; margin-bottom: 40px; }
+        .stat-badge-large { display: inline-block; background: linear-gradient(45deg, #7a1523, #d9253c); padding: 12px 30px; border-radius: 40px; font-size: clamp(14px, 2vw, 18px); font-weight: bold; letter-spacing: 2px; box-shadow: 0 5px 20px rgba(122, 21, 35, 0.6); margin-bottom: 25px; }
+        .reviews-header h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 2px; }
+        
+        @keyframes buttonPulse { 0% { box-shadow: 0 0 0 0 rgba(217, 37, 60, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(217, 37, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(217, 37, 60, 0); } }
+        .add-review-btn { background: #ffffff; color: #051320; border: none; padding: 12px 28px; font-size: 15px; font-weight: bold; border-radius: 30px; cursor: pointer; margin-top: 20px; transition: 0.3s; animation: buttonPulse 2s infinite; position: relative; z-index: 40; }
+        .add-review-btn:hover { background: #d9253c; color: #ffffff; transform: translateY(-2px); animation: none; box-shadow: 0 6px 20px rgba(217, 37, 60, 0.5); }
+        
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .review-card { background: rgba(17, 34, 51, 0.6); border: 1px solid #1a3652; border-radius: 15px; padding: 20px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
+        .review-card:hover { border-color: #d9253c; transform: translateY(-4px); background: rgba(17, 34, 51, 0.9); }
+        .review-stars { color: #ffd700; font-size: 16px; margin-bottom: 8px; }
+        .review-text { font-size: 14px; color: #b0c4de; line-height: 1.5; margin-bottom: 12px; font-style: italic; }
+        .review-author { font-weight: bold; font-size: 14px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; }
 
         /* === CONTACT SECTION === */
-        .contact { text-align: center; }
-        .contact h2 { font-size: 50px; margin-bottom: 40px; }
-        .contact-links { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-        .contact-links a { background: rgba(255,255,255,0.05); padding: 15px 30px; width: 320px; border-radius: 30px; border: 1px solid #334455; transition: 0.5s; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 18px; font-weight: bold; color: #ffffff; position: relative; z-index: 40; cursor: pointer; }
+        .contact { text-align: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .contact h2 { font-size: clamp(30px, 5vw, 48px); margin-bottom: 30px; letter-spacing: 1px; }
+        .contact-links { display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%; }
+        .contact-links a { background: rgba(255,255,255,0.05); padding: 14px 25px; width: 100%; max-width: 320px; border-radius: 30px; border: 1px solid #334455; transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 16px; font-weight: bold; color: #ffffff; position: relative; z-index: 40; cursor: pointer; }
         
         .contact-links a.instagram-btn:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.4); }
         .contact-links a.github-btn:hover { background: #24292e; border-color: transparent; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(36, 41, 46, 0.6); }
         
-        .admin-link { margin-top: 35px; font-size: 13px; color: #556677; cursor: pointer; text-decoration: underline; position: relative; z-index: 40; display: inline-block; }
+        .admin-link { margin-top: 35px; font-size: 12px; color: #556677; cursor: pointer; text-decoration: underline; position: relative; z-index: 40; display: inline-block; }
         .admin-link:hover { color: #ffffff; }
 
         /* === ADMIN PANEL MODAL === */
-        #admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center; }
-        .admin-box { background: #0a233a; padding: 30px; border-radius: 15px; border: 1px solid #d9253c; width: 420px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.9); max-height: 85vh; overflow-y: auto; position: relative; z-index: 210; }
+        #admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center; padding: 15px; }
+        .admin-box { background: #0a233a; padding: 25px; border-radius: 15px; border: 1px solid #d9253c; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; position: relative; z-index: 210; }
         .admin-box::-webkit-scrollbar { width: 5px; }
         .admin-box::-webkit-scrollbar-thumb { background: #d9253c; border-radius: 5px; }
-        .admin-box h3 { margin-bottom: 20px; color: #d9253c; font-size: 20px; }
-        .admin-box input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #334455; background: #051320; color: white; }
-        .admin-box button { background: #d9253c; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 10px; transition: 0.2s; }
+        .admin-box h3 { margin-bottom: 20px; color: #d9253c; font-size: 18px; }
+        .admin-box input { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 5px; border: 1px solid #334455; background: #051320; color: white; font-size: 14px; }
+        .admin-box button { background: #d9253c; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 10px; transition: 0.2s; font-size: 14px; }
         .admin-box button:hover { background: #ff3355; }
         .close-admin { background: transparent !important; border: 1px solid #556677 !important; color: #a3b8cc !important; }
-        .admin-section-title { background: rgba(255,255,255,0.05); padding: 6px; margin: 20px 0 10px 0; border-radius: 5px; font-size: 13px; color: #a3b8cc; text-transform: uppercase; letter-spacing: 1px; text-align: left; font-weight: bold; }
+        .admin-section-title { background: rgba(255,255,255,0.05); padding: 6px 10px; margin: 15px 0 10px 0; border-radius: 5px; font-size: 12px; color: #a3b8cc; text-transform: uppercase; letter-spacing: 1px; text-align: left; font-weight: bold; }
         #upload-section { display: none; text-align: left; }
+
+        /* =========================================
+           === RESPONSIVE MEDIA QUERIES (BREAKPOINTS) ===
+           ========================================= */
+
+        /* Tablets & Smaller Desktops */
+        @media (max-width: 968px) {
+            header { padding: 15px 5%; }
+            .nav-menu { gap: 15px; font-size: 12px; }
+            section { padding: 90px 5% 50px 5%; }
+            
+            /* Unstack Hero */
+            .hero-container { flex-direction: column; text-align: center; gap: 30px; }
+            .hero-content { text-align: center; }
+            .hero-image, .red-accent { max-width: 260px; height: 260px; }
+            
+            /* Unstack About Container */
+            .about-container { flex-direction: column; gap: 35px; align-items: center; }
+            .about-left { position: relative; top: 0; }
+            .about-right { width: 100%; }
+        }
+
+        /* Mobile Screens */
+        @media (max-width: 600px) {
+            header { padding: 12px 4%; }
+            .nav-menu { gap: 12px; font-size: 11px; letter-spacing: 0.5px; }
+            
+            .info-grid { grid-template-columns: 1fr; gap: 15px; }
+            .visit-studio-wrapper { flex-direction: column; align-items: center; width: 100%; gap: 12px; }
+            .visit-studio-btn { width: 100%; max-width: 320px; padding: 12px 20px; font-size: 13px; }
+            
+            .about-left img, .personal-info-box { max-width: 100%; }
+            .hero-image, .red-accent { max-width: 220px; height: 220px; }
+            
+            .gallery { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; }
+            .review-card { padding: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -123,95 +172,103 @@
     <canvas id="fluid-canvas"></canvas>
 
     <header>
-        <div class="nav-menu">
-            <a href="#hero">START</a>
-            <a href="#about">OPTIONS</a>
-            <a href="#projects">PROJECTS</a>
-            <a href="#contact">EXIT</a>
+        <div class="nav-container">
+            <div class="nav-menu">
+                <a href="#hero">START</a>
+                <a href="#about">OPTIONS</a>
+                <a href="#projects">PROJECTS</a>
+                <a href="#contact">EXIT</a>
+            </div>
         </div>
     </header>
 
     <section id="hero" class="hero">
-        <div class="red-accent"></div>
-        <img src="Snapchat-45323740.jpg" alt="Dhrup Routh" class="hero-image">
-        <div class="hero-content">
-            <h1>PORTFOLIO 2026</h1>
-            <p>■ FREELANCE VIDEOGRAPHER & PROFESSIONAL VIDEO EDITOR</p>
+        <div class="hero-container">
+            <div class="hero-image-wrapper">
+                <div class="red-accent"></div>
+                <img src="Snapchat-45323740.jpg" alt="Dhrup Routh" class="hero-image">
+            </div>
+            <div class="hero-content">
+                <h1>PORTFOLIO 2026</h1>
+                <p>■ FREELANCE VIDEOGRAPHER & PROFESSIONAL VIDEO EDITOR</p>
+            </div>
         </div>
     </section>
 
     <section id="about">
-        <div class="about-container">
-            <div class="about-left">
-                <img src="Snapchat-45323740.jpg" alt="Dhrup Routh Portrait">
-                <h2>HELLO, I AM</h2>
-                <h3>DHRUP ROUTH</h3>
-                
-                <div class="personal-info-box">
-                    <p><strong>📍 Location:</strong> Siliguri, West Bengal</p>
-                    <p><strong>🎂 D.O.B:</strong> 25 Dec 2005</p>
-                    <p><strong>🗣️ Languages:</strong> Hindi & English</p>
-                    <p><strong>🌍 Nationality:</strong> Indian</p>
-                </div>
-            </div>
-            
-            <div class="about-right">
-                <h2>ABOUT ME & CAREER OBJECTIVE</h2>
-                <p>Hi, I am Dhrup Routh, a passionate Freelancer, Videographer, and Professional Video Editor based in Siliguri. Currently, I am pursuing my graduation from **Surya Sen Mahavidyalaya (North Bengal University)**. I love continuous learning and exploring new technologies. My goal is to make valuable contributions to creative setups using my core skills while working strictly within time limits. Whether I'm managing a 4-member production group or hitting boundaries on a cricket pitch, hard work and discipline drive my workflow.</p>
-                
-                <h2>CORE SKILLS</h2>
-                <div style="margin-bottom: 30px;">
-                    <span class="skill-tag highlight">Advance Video Editing</span>
-                    <span class="skill-tag highlight">Trending Reels/Shorts Style</span>
-                    <span class="skill-tag">Cinematic Color Grading</span>
-                    <span class="skill-tag">Motion Graphics & Intro Design</span>
-                    <span class="skill-tag">Commercial & Product Photography</span>
-                    <span class="skill-tag">Adobe Premiere Pro</span>
-                    <span class="skill-tag">CapCut Pro</span>
-                    <span class="skill-tag">Adobe Photoshop & Lightroom</span>
-                    <span class="skill-tag">Office Automation & Excel (DCA)</span>
-                    <span class="skill-tag">Team Operations & Management</span>
-                </div>
-
-                <h2>INTERNSHIP & WORK LEARNINGS</h2>
-                <div style="margin-bottom: 30px;">
-                    <div class="learning-card">
-                        <p style="color: #ffffff; font-weight: bold; font-size: 15px; margin-bottom: 5px;">💻 Educational Computer Center Manager (1 Year Experience)</p>
-                        <ul>
-                            <li>Learned advanced multi-tasking, institutional data handling, and student database coordination.</li>
-                            <li>Polished technical troubleshooting skills and mastered data entry operations using Microsoft Office under strict schedules.</li>
-                        </ul>
-                    </div>
-                    <div class="learning-card">
-                        <p style="color: #ffffff; font-weight: bold; font-size: 15px; margin-bottom: 5px;">🎥 Studio Production & Creative Freelancing</p>
-                        <ul>
-                            <li>Gained hands-on professional learning in managing real-time commercial clients and wedding filmmaking teams.</li>
-                            <li>Mastered fast-paced post-production pipelines, professional audio syncs, and viral content layout techniques.</li>
-                        </ul>
+        <div class="about-section-container">
+            <div class="about-container">
+                <div class="about-left">
+                    <img src="Snapchat-45323740.jpg" alt="Dhrup Routh Portrait">
+                    <h2>HELLO, I AM</h2>
+                    <h3>DHRUP ROUTH</h3>
+                    
+                    <div class="personal-info-box">
+                        <p><strong>📍 Location:</strong> Siliguri, West Bengal</p>
+                        <p><strong>🎂 D.O.B:</strong> 25 Dec 2005</p>
+                        <p><strong>🗣️ Languages:</strong> Hindi & English</p>
+                        <p><strong>🌍 Nationality:</strong> Indian</p>
                     </div>
                 </div>
+                
+                <div class="about-right">
+                    <h2>ABOUT ME & CAREER OBJECTIVE</h2>
+                    <p>Hi, I am Dhrup Routh, a passionate Freelancer, Videographer, and Professional Video Editor based in Siliguri. Currently, I am pursuing my graduation from **Surya Sen Mahavidyalaya (North Bengal University)**. I love continuous learning and exploring new technologies. My goal is to make valuable contributions to creative setups using my core skills while working strictly within time limits. Whether I'm managing a 4-member production group or hitting boundaries on a cricket pitch, hard work and discipline drive my workflow.</p>
+                    
+                    <h2>CORE SKILLS</h2>
+                    <div style="margin-bottom: 30px;">
+                        <span class="skill-tag highlight">Advance Video Editing</span>
+                        <span class="skill-tag highlight">Trending Reels/Shorts Style</span>
+                        <span class="skill-tag">Cinematic Color Grading</span>
+                        <span class="skill-tag">Motion Graphics & Intro Design</span>
+                        <span class="skill-tag">Commercial & Product Photography</span>
+                        <span class="skill-tag">Adobe Premiere Pro</span>
+                        <span class="skill-tag">CapCut Pro</span>
+                        <span class="skill-tag">Adobe Photoshop & Lightroom</span>
+                        <span class="skill-tag">Office Automation & Excel (DCA)</span>
+                        <span class="skill-tag">Team Operations & Management</span>
+                    </div>
 
-                <div class="info-grid">
-                    <div>
-                        <h2>EXPERIENCE</h2>
-                        <div style="margin-bottom: 15px;">
-                            <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Freelance & Studio Work</p>
-                            <p style="font-size: 14px;">Lead Videographer & Video Editor (CSD Studio)</p>
+                    <h2>INTERNSHIP & WORK LEARNINGS</h2>
+                    <div style="margin-bottom: 30px;">
+                        <div class="learning-card">
+                            <p style="color: #ffffff; font-weight: bold; font-size: 15px; margin-bottom: 5px;">💻 Educational Computer Center Manager (1 Year Experience)</p>
+                            <ul>
+                                <li>Learned advanced multi-tasking, institutional data handling, and student database coordination.</li>
+                                <li>Polished technical troubleshooting skills and mastered data entry operations using Microsoft Office under strict schedules.</li>
+                            </ul>
+                        </div>
+                        <div class="learning-card">
+                            <p style="color: #ffffff; font-weight: bold; font-size: 15px; margin-bottom: 5px;">🎥 Studio Production & Creative Freelancing</p>
+                            <ul>
+                                <li>Gained hands-on professional learning in managing real-time commercial clients and wedding filmmaking teams.</li>
+                                <li>Mastered fast-paced post-production pipelines, professional audio syncs, and viral content layout techniques.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div>
+                            <h2>EXPERIENCE</h2>
+                            <div style="margin-bottom: 15px;">
+                                <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Freelance & Studio Work</p>
+                                <p style="font-size: 14px;">Lead Videographer & Video Editor (CSD Studio)</p>
+                            </div>
+                            <div>
+                                <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Educational Computer Center</p>
+                                <p style="font-size: 14px;">Computer Center Manager (1 Year)</p>
+                            </div>
                         </div>
                         <div>
-                            <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Educational Computer Center</p>
-                            <p style="font-size: 14px;">Computer Center Manager (1 Year)</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h2>EDUCATION</h2>
-                        <div style="margin-bottom: 15px;">
-                            <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Graduation (Pursuing)</p>
-                            <p style="font-size: 14px;">Surya Sen Mahavidyalaya, NBU</p>
-                        </div>
-                        <div>
-                            <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Diploma in Computer App. (DCA)</p>
-                            <p style="font-size: 14px;">WBBSE (10th & 12th Completed)</p>
+                            <h2>EDUCATION</h2>
+                            <div style="margin-bottom: 15px;">
+                                <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Graduation (Pursuing)</p>
+                                <p style="font-size: 14px;">Surya Sen Mahavidyalaya, NBU</p>
+                            </div>
+                            <div>
+                                <p style="color: #ffffff; font-weight: bold; font-size: 16px;">Diploma in Computer App. (DCA)</p>
+                                <p style="font-size: 14px;">WBBSE (10th & 12th Completed)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,32 +277,34 @@
     </section>
 
     <section id="projects">
-        <div class="projects-header">
-            <h2>PROJECTS & SHOWCASE</h2>
-            <p style="color: #a3b8cc; margin-top: 10px; margin-bottom: 20px;">A premium glimpse into my latest cinematography and high-end video updates.</p>
-        </div>
-        
-        <div class="visit-studio-wrapper">
-            <a href="https://csd-studio-gold.vercel.app/" target="_blank" class="visit-studio-btn">
-                🎬 Visit Live CSD Studio Website 
-            </a>
-            <a href="https://csd-studio-instant-quote-calculator.vercel.app/" target="_blank" class="visit-studio-btn">
-                📊 Instant Quote Calculator
-            </a>
-        </div>
-
-        <div class="gallery" id="dynamic-gallery">
+        <div class="projects-section-container">
+            <div class="projects-header">
+                <h2>PROJECTS & SHOWCASE</h2>
+                <p style="color: #a3b8cc; margin-top: 10px; margin-bottom: 20px;">A premium glimpse into my latest cinematography and high-end video updates.</p>
             </div>
+            
+            <div class="visit-studio-wrapper">
+                <a href="https://csd-studio-gold.vercel.app/" target="_blank" class="visit-studio-btn">
+                    🎬 Visit Live CSD Studio Website 
+                </a>
+                <a href="https://csd-studio-instant-quote-calculator.vercel.app/" target="_blank" class="visit-studio-btn">
+                    📊 Instant Quote Calculator
+                </a>
+            </div>
+
+            <div class="gallery" id="dynamic-gallery"></div>
+        </div>
     </section>
 
     <section id="reviews">
-        <div class="reviews-header">
-            <div class="stat-badge-large">★ 100+ HAPPY CUSTOMERS ★</div>
-            <h2>CLIENT REVIEWS</h2>
-            <button class="add-review-btn" onclick="askForReview()">+ Write a Review</button>
-        </div>
-        <div class="reviews-grid" id="public-reviews-grid">
+        <div class="reviews-section-container">
+            <div class="reviews-header">
+                <div class="stat-badge-large">★ 100+ HAPPY CUSTOMERS ★</div>
+                <h2>CLIENT REVIEWS</h2>
+                <button class="add-review-btn" onclick="askForReview()">+ Write a Review</button>
             </div>
+            <div class="reviews-grid" id="public-reviews-grid"></div>
+        </div>
     </section>
 
     <section id="contact" class="contact">
@@ -303,7 +362,6 @@
     </div>
 
     <script>
-        // FLUID CURSOR ANIMATION ENGINE - REPAIRED OVERLAY OVERRIDE
         const canvas = document.getElementById('fluid-canvas');
         const ctx = canvas.getContext('2d');
         
@@ -365,7 +423,6 @@
         }
         animate();
 
-        // REVIEWS CORE LAYOUT
         const defaultReviews = [
             {name: "Rahul Sharma", text: "Dhrup bhai ki editing level alag hi hai! Mere reels pe engagement double ho gaya inke motion graphics aur transitions ki wajah se. Highly recommended!", status: "approved"},
             {name: "Priya Patel", text: "I hired him for my cinematic wedding video. The color grading was mind-blowing and exactly what I wanted. Thank you for making my memories so beautiful.", status: "approved"},
@@ -405,7 +462,6 @@
             }
         }
 
-        // ADMIN CONTROLS
         const VALID_ID = "7872420455";
         const VALID_PASS = "@@@7872420455nilu";
 
@@ -479,7 +535,6 @@
             }
         }
 
-        // GOOGLE DRIVE EXTRACTOR
         function extractDriveId(link) {
             try {
                 if (link.includes('/d/')) return link.split('/d/')[1].split('/')[0];
