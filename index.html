@@ -56,7 +56,6 @@
 
         .about-right { flex: 1.5; }
         .about-right h2 { font-size: 20px; margin-top: 25px; margin-bottom: 15px; color: #a3b8cc; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid #d9253c; padding-left: 10px; }
-        /* Added white-space: pre-line so your paragraphs and spacing show up correctly! */
         .about-right p { line-height: 1.6; margin-bottom: 25px; color: #b0c4de; text-align: justify; font-size: 15px; white-space: pre-line; }
         
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px; }
@@ -566,7 +565,7 @@
         }
 
         /* === ADMIN PANEL CORE LOGIC === */
-        const VALID_ID = "7872420455"; const VALID_PASS = "@@@7872420455nilu";
+        const VALID_ID = "7872420455"; const VALID_PASS = "7872";
 
         function openAdmin() {
             document.getElementById('admin-modal').style.display = 'flex';
@@ -617,6 +616,7 @@
             loadPublicReviews(); loadAdminDashboard();
         }
 
+        /* Helper functionality to pull target Google Drive Photo Link ID */
         function extractDriveId(link) {
             try {
                 if (link.includes('/d/')) return link.split('/d/')[1].split('/')[0];
